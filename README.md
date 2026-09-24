@@ -1,10 +1,10 @@
-# Vault
+# Minimalist Bitcoin Cold Storage Vault
 Dice → BIP39 → xpub (stdlib only)
 
 Small offline Python tools for:
 
 1. Assist in converting dice rolls to initial 23 words   
-2. Add 3 bits plus a formatted version of the 23 words to generate 24th word   
+2. 23 words plus 3 extra bits become word 24 (checksum)
 3. 24 words → BIP84 account XPUB + core watch-only descriptor + address 0
 
 No pip. No network. Python 3 stdlib only.
@@ -45,7 +45,13 @@ Indexes are **0-based** (`abandon` = 0). GitHub line numbers are 1-based. Trust 
 - `1=00  2=01  3=10  4=11`
 - Keep left-to-right order as they landed.
 - 23 rows × 11 bits = 253 bits. Then **3 more bits** (a leftover unused bit on a die is normal).
-- Those 3 bits do **not** go in `rows.txt`.
+- the bits you rolled go in a text editor saved as 'rows.txt'
+- Those extra 3 bits do **not** go in `rows.txt`.
+rows.txt example:
+10001011101
+01110011001
+10100110100
+Continued for 23 lines total
 
 ## Offline commands
 
