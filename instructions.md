@@ -76,7 +76,7 @@ You want the `.py` files and `english.txt`. If `cd` fails, you used the short na
 4. Prove the account script matches the published test vector:
 
 ```bash
-python3 bip39\_account.py --test
+python3 bip39_account.py --test
 ```
 
 You want `PASS`. The `xprv9s21ZrQH…` line is Trezor’s published test key, not yours.
@@ -150,7 +150,7 @@ Copy onto paper or a **public-only** text file on the USB (not the words):
 * path (`m/84h/0h/0h`)
 * master fingerprint (xfp)
 * **xpub**
-* `wpkh(\[xfp/84h/0h/0h]xpub…/0/\*)`
+* `wpkh([xfp/84h/0h/0h]xpub…/0/*)`
 * first receive address (`bc1q…`)
 
 Do **not** pass `--xprv` unless this box is air-gapped and you need a signing descriptor. Address 0 is `m/84h/0h/0h/0/0`. Confirm it on a second tool (Sparrow / BlueWallet / Core) before sending.
@@ -168,8 +168,8 @@ rm rows.txt
 Words stay on paper / the Tails session. Only the descriptor moves.
 
 1. Create a **watch-only** wallet (`disable private keys`, blank if offered).
-2. `getdescriptorinfo` on the receive `wpkh(…/0/\*)` line; use the string that includes `#checksum`.
-3. Same for change: same xpub with `/1/\*`.
+2. `getdescriptorinfo` on the receive `wpkh(…/0/*)` line; use the string that includes `#checksum`.
+3. Same for change: same xpub with `/1/*`.
 4. `importdescriptors` both (receive `internal: false`, change `internal: true`). Use `"timestamp": "now"` if the coins have not been sent yet. A **pruned** node may refuse a full rescan (`timestamp: 0`).
 5. `getnewaddress` (or Receive in the GUI) must match script address 0. If not, stop.
 
