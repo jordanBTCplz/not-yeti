@@ -1,14 +1,16 @@
-# Dice → BIP39 → xpub (stdlib only)
+# Vault
+Dice → BIP39 → xpub (stdlib only)
 
 Small offline Python tools for:
 
-1. Casino dice → 23 BIP39 words  
-2. 3 extra bits → word 24 (checksum)  
-3. 24 words → BIP84 account **xpub** + Core watch-only descriptor + address 0  
+1. Assist in converting dice rolls to initial 23 words   
+2. Add 3 bits plus a formatted version of the 23 words to generate 24th word   
+3. 24 words → BIP84 account XPUB + core watch-only descriptor + address 0
 
 No pip. No network. Python 3 stdlib only.
 
-This is **not** a wallet. Signing is Sparrow or Bitcoin Core on an air-gapped machine. The online node only ever sees an xpub.
+This is **not** a wallet. Signing will have to be done on Sparrow or Bitcoin Core on an air-gapped machine. The online node only ever sees an xpub.
+This setup can be used to generate an XPRV as well in order to sign, but my primary goal is to create a vault.
 
 ## Files
 
@@ -19,7 +21,7 @@ This is **not** a wallet. Signing is Sparrow or Bitcoin Core on an air-gapped ma
 | `bip39_last_word.py` | 23 words + 3 bits → word 24 |
 | `bip39_account.py` | 24 words → xpub / `wpkh` / address 0 |
 | `bip39-dice-worksheet.pdf` | Printable transcription sheet |
-| `tails-dice-playbook.md` | Tails + Core watch-only walkthrough |
+| `instructions.md` | Tails + Core watch-only walkthrough |
 
 ## Wordlist check
 
@@ -59,7 +61,7 @@ python3 bip39_last_word.py
 python3 bip39_account.py
 ```
 
-Default path `m/84h/0h/0h`. Add `--xprv` only on the air-gap box if you need the account xprv.
+Default path `m/84h/0h/0h`. Add `--xprv` to the end of 'python3 bip39_account.py' only on the air-gap box if you need the account xprv.
 
 Address 0 is `m/84h/0h/0h/0/0` (account → receive branch → index 0). Core import:
 
@@ -74,7 +76,6 @@ Confirm address 0 against BlueWallet / Sparrow / Core **before** sending.
 
 - Multisig descriptors (`wsh(sortedmulti(...))`) — architecture can, these scripts do not
 - PSBT signing
-- Replace Tails / a hardware signer
 
 ## License
 
