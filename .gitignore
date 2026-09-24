@@ -1,0 +1,8 @@
+rows.txt
+*.pyc
+__pycache__/
+.DS_Store
+*seed*
+*mnemonic*
+*xprv*
+Core XPUB
