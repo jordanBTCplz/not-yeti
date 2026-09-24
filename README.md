@@ -47,11 +47,6 @@ Indexes are **0-based** (`abandon` = 0). GitHub line numbers are 1-based. Trust 
 - 23 rows × 11 bits = 253 bits. Then **3 more bits** (a leftover unused bit on a die is normal).
 - the bits you rolled go in a text editor saved as 'rows.txt'
 - Those extra 3 bits do **not** go in `rows.txt`.
-rows.txt example:
-10001011101
-01110011001
-10100110100
-Continued for 23 lines total
 
 ## Offline commands
 
