@@ -1,8 +1,8 @@
-# Air-gap playbook: dice → BIP39 → Core watch-only
+# Instructions: dice → BIP39 → Core watch-only
 
 Same steps for a $10 test and for a real plate. For a real plate: no photos of dice, paper, or the terminal once words are on screen.
 
-You need three roles, not one magic box:
+There are three roles, not just one computer:
 
 1. **Meatspace** — casino dice + paper
 2. **Offline signer** — a laptop that boots **Tails** (or equivalent amnesic OS) and never joins a network this session
