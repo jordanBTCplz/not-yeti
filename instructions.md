@@ -14,8 +14,8 @@ There are three roles, not just one computer:
 * A Tails USB you verified against [tails.net](https://tails.net)
 * A **second** USB (“tools”) with only:
 
-  * `bip39\_last\_word.py`
-  * `bip39\_account.py`
+  * `bip39_last_word.py`
+  * `bip39_account.py`
   * `lookup.py`
   * `english.txt`
   * these instructions / the worksheet PDF (optional)
@@ -128,7 +128,7 @@ You get `1 76 another` style lines. Check **row 1** against paper. The same word
 ## 5\. Word 24
 
 ```bash
-python3 bip39\_last\_word.py
+python3 bip39_last_word.py
 ```
 
 * 23 words, spaces between them
@@ -140,7 +140,7 @@ python3 bip39\_last\_word.py
 ## 6\. xpub + first address
 
 ```bash
-python3 bip39\_account.py
+python3 bip39_account.py
 ```
 
 Type all **24** words. Empty passphrase.
@@ -204,11 +204,11 @@ These scripts do not sign PSBTs.
 ls /media/amnesia
 cd /media/amnesia/LABEL
 ls
-python3 bip39\_account.py --test
+python3 bip39_account.py --test
 wc -l rows.txt
 python3 lookup.py
-python3 bip39\_last\_word.py
-python3 bip39\_account.py
+python3 bip39_last_word.py
+python3 bip39_account.py
 rm rows.txt
 ```
 
