@@ -1,6 +1,9 @@
 # Minimalist Bitcoin Cold Storage Vault
 Dice → BIP39 → xpub (stdlib only)
 
+You shouldn't use this for serious money. This is not properly reviewed. You should probably just use Bitcoin Core.
+What this is probably already good enough for is a verification tool against a more trusted software. 
+
 Small offline Python tools for:
 
 1. Assist in converting dice rolls to initial 23 words   
@@ -10,7 +13,7 @@ Small offline Python tools for:
 No pip. No network. Python 3 stdlib only.
 
 This is **not** a wallet. Signing will have to be done on Sparrow or Bitcoin Core on an air-gapped machine. The online node only ever sees an xpub.
-This setup can be used to generate an XPRV as well in order to sign, but my primary goal is to create a vault.
+This setup can be used to generate an XPRV as well in order to sign, but my primary goal is to create a safe place to store Bitcoin.
 
 ## Files
 
