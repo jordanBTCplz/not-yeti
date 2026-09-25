@@ -104,8 +104,18 @@ Printable sheet: `bip39-dice-worksheet.pdf` in this repo.
 
 1. Open a text editor on Tails, or `nano rows.txt` in the tools folder.
 2. Type 23 lines, each exactly 11 characters of `0` and `1`. No spaces. No extra-bits line.
-3. Save as `rows.txt` **on the tools USB**.
-4. Check line count (from the tools folder):
+
+3. Example of the *shape* (fake bits — do not use):
+
+```
+01001110101
+11010001100
+00101101011
+```
+
+23 lines like that. No spaces. No fourth leftover-bits line.
+4. Save as `rows.txt` **on the tools USB**.
+5. Check line count (from the tools folder):
 
 ```bash
 wc -l rows.txt
