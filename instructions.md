@@ -71,7 +71,7 @@ cd /media/amnesia/LABEL
 ls
 ```
 
-You want the `.py` files and `english.txt`. If `cd` fails, you used the short name from `\~` — use the full `/media/amnesia/LABEL` path.
+You want the `.py` files and `english.txt`. If `cd` fails, you used the short name from `~` — use the full `/media/amnesia/LABEL` path.
 
 4. Prove the account script matches the published test vector:
 
