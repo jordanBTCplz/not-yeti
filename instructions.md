@@ -20,10 +20,11 @@ There are three roles, not just one computer:
   * `english.txt`
   * these instructions / the worksheet PDF (optional)
 * A **third** USB if you want to segregate data transfer from the "tools" stick
-* Casino-grade dice, paper, pen (You could also use something like Entropia Seed Pills to minimize this step). lookup.py is only a tool for converting the raw bits to bip39 words without looking over the wordlist 23 times. Using a different scheme eliminates the need for lookup.py.
+* Casino-grade dice, paper, pen
+* You could also use something like Entropia Seed Pills to minimize this step. lookup.py is only a tool for converting the raw bits to bip39 words without looking over the wordlist 23 times. Using a different scheme eliminates the need for lookup.py.
 * A Bitcoin Core node that stays on its own machine
 
-Do not put the 24 words on the tools stick. Do not plug the tools stick into the node until it only has the xpub file.
+Do not put the 24 words on any USB sticks. XPUB rides the data transfer stick, not the tools stick, if you have both.
 
 `english.txt` check (can be done once on a hot machine, then copy the file):
 
@@ -72,7 +73,7 @@ cd /media/amnesia/LABEL
 ls
 ```
 
-You want the `.py` files and `english.txt`. If `cd` fails, you may have typed only the stick's name. Use the full path: /media/amnesia/amnesia/LABEL.
+You want the `.py` files and `english.txt`. If `cd` fails, you may have typed only the stick's name. Use the full path: /media/amnesia/LABEL.
 
 4. Prove the account script matches the published test vector:
 
@@ -126,7 +127,7 @@ wc -l rows.txt
 
 Must say `23 rows.txt`.  
 
-5. Turn rows into words:
+6. Turn rows into words:
 
 ```bash
 python3 lookup.py
@@ -157,7 +158,7 @@ python3 bip39_account.py
 ```
 
 Type all **24** words. Script default is no passphrase.
-There is a '--passphrase flag' you can add to the script. Do not use this unless you intend to back this up as well.
+There is a '--passphrase' option you can add to the script. Do not use this unless you intend to back this up as well.
 Remember whether you used a passphrase when you cross check this tool against a wallet software. 
 
 Copy onto paper or a **public-only** text file on the USB (not the words):
