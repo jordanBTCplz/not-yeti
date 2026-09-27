@@ -4,7 +4,7 @@ Same steps for a $10 test and for a real plate. For a real plate: no photos of d
 
 There are three roles, not just one computer:
 
-1. **Meatspace** — casino dice + paper
+1. **Meatspace** — casino dice + paper (Or however you want to generate entropy)
 2. **Offline signer** — a laptop that boots **Tails** (or equivalent amnesic OS) and never joins a network this session
 3. **Online node** — Bitcoin Core. It only ever sees an xpub / descriptor. Never the 24 words.
 
@@ -19,7 +19,8 @@ There are three roles, not just one computer:
   * `lookup.py`
   * `english.txt`
   * these instructions / the worksheet PDF (optional)
-* Casino-grade dice, paper, pen (You could also use something like Entropia Seed Pills to minimize this step)
+* A **third** USB if you want to segregate data transfer from the "tools" stick
+* Casino-grade dice, paper, pen (You could also use something like Entropia Seed Pills to minimize this step). lookup.py is only a tool for converting the raw bits to bip39 words without looking over the wordlist 23 times. Using a different scheme eliminates the need for lookup.py.
 * A Bitcoin Core node that stays on its own machine
 
 Do not put the 24 words on the tools stick. Do not plug the tools stick into the node until it only has the xpub file.
@@ -71,7 +72,7 @@ cd /media/amnesia/LABEL
 ls
 ```
 
-You want the `.py` files and `english.txt`. If `cd` fails, you used the short name from `~` — use the full `/media/amnesia/LABEL` path.
+You want the `.py` files and `english.txt`. If `cd` fails, you may have typed only the stick's name. Use the full path: /media/amnesia/amnesia/LABEL.
 
 4. Prove the account script matches the published test vector:
 
@@ -113,7 +114,9 @@ Printable sheet: `bip39-dice-worksheet.pdf` in this repo.
 00101101011
 ```
 
-23 lines like that. No spaces. No fourth leftover-bits line.
+23 lines like that. No spaces. Do Not put the extra 3 bits in this file.
+Those 3 extra bits stay on paper until step 5.
+
 4. Save as `rows.txt` **on the tools USB**.
 5. Check line count (from the tools folder):
 
@@ -129,7 +132,7 @@ Must say `23 rows.txt`.
 python3 lookup.py
 ```
 
-You get `1 76 another` style lines. Check **row 1** against paper. The same word twice is allowed.
+Each line is: your row number, word list index number, word. Check rows against paper. The same word twice is allowed.
 
 `english.txt` indexes are **0-based** (`abandon` = 0). GitHub line numbers are 1-based. Trust `lookup.py`.
 
@@ -142,7 +145,7 @@ python3 bip39_last_word.py
 ```
 
 * 23 words, spaces between them
-* Extra bits: `000` / `101` / or a number `0`–`7`
+* Extra bits: Example: `000` / `101` / whatever your extra bits are
 * Write **word 24** and the full 24 word seed on paper
 
 \---
@@ -153,7 +156,9 @@ python3 bip39_last_word.py
 python3 bip39_account.py
 ```
 
-Type all **24** words. Empty passphrase.
+Type all **24** words. Script default is no passphrase.
+There is a '--passphrase flag' you can add to the script. Do not use this unless you intend to back this up as well.
+Remember whether you used a passphrase when you cross check this tool against a wallet software. 
 
 Copy onto paper or a **public-only** text file on the USB (not the words):
 
@@ -165,7 +170,7 @@ Copy onto paper or a **public-only** text file on the USB (not the words):
 
 Do **not** pass `--xprv` unless this box is air-gapped and you need a signing descriptor. Address 0 is `m/84h/0h/0h/0/0`. Confirm it on a second tool (Sparrow / BlueWallet / Core) before sending.
 
-Delete `rows.txt` off the tools stick when you are done:
+Delete `rows.txt` off the tools stick or separate data transfer stick when you are done:
 
 ```bash
 rm rows.txt
@@ -175,7 +180,7 @@ rm rows.txt
 
 ## 7\. Online node (Bitcoin Core)
 
-Words stay on paper / the Tails session. Only the descriptor moves.
+Words stay on paper/ metal plate / the Tails session. Only the descriptor moves.
 
 1. Create a **watch-only** wallet (`disable private keys`, blank if offered).
 2. `getdescriptorinfo` on the receive `wpkh(…/0/*)` line; use the string that includes `#checksum`.
