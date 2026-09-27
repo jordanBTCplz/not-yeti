@@ -3,7 +3,7 @@
 BIP39 words → account **xpub** so Bitcoin Core can **watch**.
 
 This is not a hardware wallet. This is not a signing wallet. The only job
-that has been used in anger is:
+that has been tested for is:
 
 **24 words → BIP84 xpub + watch-only descriptor + receive address 0.**
 
@@ -11,15 +11,23 @@ that has been used in anger is:
 been treated as a finished product. Sign in Sparrow or Bitcoin Core on an
 air-gapped machine. The online node only ever sees an xpub.
 
-Do not put life savings on an address that has only been printed by
-`bip39_account.py`. These files are not formally reviewed. Core / Sparrow
-are the graders.
+Do not put real money on an address that has only been printed by
+`bip39_account.py`. These files are not formally reviewed.
+
+This tool does not use libsecp. Sparrow (and Core) do. Libsecp is a much
+larger library than we need here; we only walk BIP32 far enough to print
+an xpub and address 0. Grade this script against Sparrow or anything else
+you trust that uses libsecp.
+
+If the same 24 words and path produce the **same xpub and address 0** in
+this script and in Sparrow, you are not looking at a malicious address.
+The scripts are small and do one job. A match does **not** fix a word you
+wrote down wrong on your backup.
 
 ## Why words-in-a-bag is the default
 
 Dice can be slightly "fairer" bits. The expensive mistake is not a 0.2-bit
-bias. It is **writing 253 bits by hand, typing `rows.txt`, and skipping a
-row.**
+bias. It is transcribing 253 bits of dice rolls into 23 words.
 
 Default entropy here is: print the official wordlist, cut slips, draw
 **23 words**, put each slip **back** (repeats are allowed), then get **3
@@ -55,9 +63,7 @@ No pip. No network. Python 3 stdlib only.
 | `bip39-dice-worksheet.pdf` | 11-bit dice sheet | Dice path only |
 | `instructions.md` | Tails + Core walkthrough | Read it |
 
-Already have a valid 24-word phrase? Skip both small scripts. Type the
-words into Sparrow. Optional: still run `bip39_account.py` to print the
-xpub.
+Already have a valid 24-word phrase? Skip both small scripts. Run 'bip39_account.py and type the 24 words in.
 
 ## Wordlist check
 
@@ -80,12 +86,13 @@ Indexes are **0-based** (`abandon` = 0). GitHub line numbers are 1-based.
    1=00 2=01 3=10 4=11 and keep three bits). Write them as 010 etc.
 5. On the offline box: `python3 bip39_last_word.py` with the 23 words and
    those 3 bits. Write word 24.
-6. `python3 bip39_account.py` with all 24 words. Empty passphrase unless
-   you have a written 25th secret.
+6. `python3 bip39_account.py` with all 24 words. Default is an empty
+   passphrase. There is a `--passphrase` flag. Do not use it unless that
+   extra secret is written down and backed up just like your 24 words and **NOT Together**. That flag is untested as of now.
 
-Uneven cuts and stuck slips are real. They are still usually "enough bits."
-They are a worse *argument* than dice and a better *typing* story. That is
-the trade.
+Uneven cuts and stuck slips are real. You still have far more than
+enough bits if the bag is mixed. Dice are cleaner on paper. A bag is
+harder to transcribe wrong. That is the trade.
 
 ## Optional: dice
 
