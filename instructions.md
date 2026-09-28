@@ -5,9 +5,9 @@ of slips, paper, or the terminal once words are on screen.
 
 There are three roles, not just one computer:
 
-1. **Meatspace** — bag of word slips (default) or casino dice
-2. **Offline signer** — a laptop that boots **Tails** (or equivalent) and
-   never joins a network this session
+1. **Meatspace** — bag of BIP39 word slips (default) or casino dice
+2. **Offline signer** — a laptop with a clean install of linux that boots **Tails**
+    (or equivalent) and never joins a network this session
 3. **Online node** — Bitcoin Core. It only ever sees an xpub / descriptor.
    Never the 24 words.
 
@@ -18,7 +18,7 @@ There are three roles, not just one computer:
 - A **second** USB ("tools") with:
   - `bip39_last_word.py`
   - `bip39_account.py`
-  - `english.txt`
+  - `english.txt` 
   - `lookup.py` and `bip39-dice-worksheet.pdf` **only if you use dice**
   - these instructions (optional)
 - A **third** USB if you want the xpub on a separate data stick
@@ -51,7 +51,7 @@ Blue desktop = offline enough. After boot, Tails runs from RAM; you can unplug t
 
 ## 2. Terminal + tools USB
 
-1. Plug the tools stick.
+1. Plug the "tools" stick.
 2. Open Terminal.
 3. Mount point:
 
@@ -59,7 +59,7 @@ Blue desktop = offline enough. After boot, Tails runs from RAM; you can unplug t
     cd /media/amnesia/LABEL
     ls
 
-`LABEL` is the stick's name. If `cd` fails, you typed only the name. Use the full path `/media/amnesia/LABEL`.
+`LABEL` is the stick's name. If `cd` fails, you probably typed only the name. Use the full path `/media/amnesia/LABEL`.
 
 Some live USBs use `/run/media/USERNAME/LABEL` instead.
 
@@ -67,7 +67,7 @@ Some live USBs use `/run/media/USERNAME/LABEL` instead.
 
     python3 bip39_account.py --test
 
-You want `PASS`. The `xprv9s21ZrQH…` line is Trezor's test key, not yours.
+You want `PASS`. The `xprv9s21ZrQH…` line is Trezor's test key, not yours
 
 ---
 
@@ -75,7 +75,7 @@ You want `PASS`. The `xprv9s21ZrQH…` line is Trezor's test key, not yours.
 
 1. Print the hashed `english.txt`. Cut each word onto its own slip.
 2. Mix. Draw one, write it, **put it back**, mix. Do that **23 times**.
-3. Repeats are allowed.
+3. Repeat words are allowed for BIP39. If you draw the same word from two random pulls, that's ok.
 4. Get **3 extra bits** on paper (`000` … `111`) with coins or a 1-4 die
    (`1=00 2=01 3=10 4=11`). This is **not** a 24th drawn word.
 
