@@ -67,7 +67,7 @@ No pip. No network. Python 3 stdlib only.
 | `bip39-dice-worksheet.pdf` | 11-bit dice sheet | Dice path only |
 | `instructions.md` | Tails + Core walkthrough | Read it |
 
-Already have a valid 24-word phrase? Skip both small scripts. Run 'bip39_account.py' and type the 24 words in.
+Already have a valid 24-word phrase? Skip both small scripts. Run `bip39_account.py` and type the 24 words in.
 
 ## Wordlist check
 
