@@ -123,7 +123,7 @@ Then section 5.
 
 Type all **24** words. Script default is no passphrase.
 
-There is a `--passphrase` option. Do not use it unless that extra secret is written down with the plate. When you check in Sparrow or BlueWallet, leave the passphrase blank so it matches.
+There is a `--passphrase` option. Do not use it unless that extra secret is written down with the plate. When you check in Sparrow leave the passphrase blank so it matches.
 
 Copy onto paper or a **public-only** text file on the data USB (not the 24 words):
 
@@ -133,7 +133,7 @@ Copy onto paper or a **public-only** text file on the data USB (not the 24 words
 - `wpkh([xfp/84h/0h/0h]xpub…/0/*)`
 - first receive address (`bc1q…`)
 
-Do **not** pass `--xprv` unless this box is air-gapped and you need a signing descriptor. Address 0 is `m/84h/0h/0h/0/0`. Confirm it on a second tool (Sparrow / BlueWallet / Core) before sending.
+Do **not** pass `--xprv` unless this box is air-gapped and you need a signing descriptor. Address 0 is `m/84h/0h/0h/0/0`. Confirm it on a second tool (Sparrow / Core) before sending.
 
 **If** you used the dice path, delete `rows.txt` before you unplug the stick:
 
@@ -171,7 +171,15 @@ Tails does not keep scripts in RAM after shutdown. The tools USB does.
 
 ## Spend later (outline)
 
-The node builds a PSBT. The Tails box (Sparrow or Core binaries, network off) loads the 24 words for that session only, signs, writes the signed PSBT back to a USB. The node broadcasts. These scripts do not sign PSBTs.
+These scripts do not sign. They do not need to.
+
+Online Core (watch-only) builds a PSBT. On Tails, open Sparrow,
+type the 24 words for that session only, sign, write the signed
+PSBT back to a USB. Core broadcasts. Wipe / shut down. Do not
+leave the seed on disk.
+
+Do **not** use `--xprv` for this. That flag dumps a spending key.
+It is untested. Leave it alone.
 
 ---
 
