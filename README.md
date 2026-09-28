@@ -41,8 +41,9 @@ Dice protocol is still in `instructions.md` if you want it.
 
 ## Trust model
 
-After address 0 matches Sparrow, BlueWallet, or Core, the happy-path derivation itself
-is as checked as these scripts get.
+After the same 24 words print the same address 0 in this script and in
+Sparrow, the derivation is as checked as these files get. Core is what
+you use to watch that xpub afterward.
 
 What still loses coins: sloppy draws, leftover bits in the wrong place,
 photos, Wi-Fi while words exist, passphrase in one tool and not the other.
@@ -96,7 +97,7 @@ Indexes are **0-based** (`abandon` = 0). GitHub line numbers are 1-based.
 
 Uneven cuts and stuck slips are real. You still have far more than
 enough bits if the bag is mixed. Dice are cleaner on paper. A bag is
-harder to transcribe wrong. That is the trade. Make the choice yourself.
+harder to transcribe wrong. That is the trade. **Make the choice yourself**.
 
 ## Optional: dice
 
@@ -123,7 +124,7 @@ Default bag path:
 Dice path adds `python3 lookup.py` first.
 
 Default path `m/84h/0h/0h`. Script default is **no passphrase**.
-`--xprv` exists. Untested as a daily signer.
+`--xprv` exists. **Untested as a daily signer**.
 
 Address 0 is `m/84h/0h/0h/0/0`. Core:
 
