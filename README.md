@@ -2,20 +2,20 @@
 
 BIP39 words → account **xpub** so Bitcoin Core can **watch**.
 
-If you already insist on your own entropy and a BIP39 plate, the extra
-code here is two small stdlib Python scripts. Linux, Tails, and Core are the
-same trust you would take for an offline Core-only workflow. Sparrow
+This tool is for someone that wants to generate their own entropy and a BIP39 plate, the extra
+code here is two small stdlib Python scripts. Linux, Tails, and Core require the
+same trust you would need for an offline Core-only workflow. Sparrow
 is the independent check that those scripts walked BIP32 the same way
-libsecp does. If you do not want BIP39 at all, use Core and skip this
-repo.
+libsecp does. **If you do not care about BIP39, use Core and skip this
+repo**.
 
 This is not a signing wallet. The only job this tool has been tested for is:
 
 **24 words → BIP84 xpub + watch-only descriptor + receive address 0.**
 
 `--xprv`, other paths, passphrases, multisig, and spending have **not**
-been treated as a finished product. Sign in Sparrow or Bitcoin Core on an
-air-gapped machine. The online node only ever sees an xpub.
+been treated as a finished product. Sign in Sparrow/ (or your trusted signer) 
+on an air-gapped machine. The core online node only ever sees an xpub from this tool.
 
 Do not put real money on an address that has only been printed by
 `bip39_account.py`. These files are not formally reviewed.
@@ -42,6 +42,10 @@ You do not need this script to print addresses beyond 0.
 
 Dice can be slightly "fairer" bits. The expensive mistake is not a slightly 
 unfair bag. It is transcribing 253 bits of dice rolls into 23 words.
+**How you generate your entropy is a decision you should make. Both options 
+in this guide have trade-offs**. I defaulted to slips of paper in a bag because 
+the ethos of this tool is minimization of trust on software. Generating a 23 words
+from dice and paper only without `lookup.py` is exhausting, but can be done.
 
 Default entropy here is: print the official wordlist, cut slips, draw
 **23 words**, put each slip **back** (repeats are allowed), then get **3
@@ -104,10 +108,6 @@ Indexes are **0-based** (`abandon` = 0). GitHub line numbers are 1-based.
 6. `python3 bip39_account.py` with all 24 words. Default is an empty
    passphrase. There is a `--passphrase` flag. Do not use it unless that
    extra secret is written down and backed up just like your 24 words and **NOT Together**. That flag is untested as of now.
-
-Uneven cuts and stuck slips are real. You still have far more than
-enough bits if the bag is mixed. Dice are cleaner on paper. A bag is
-harder to transcribe wrong. That is the trade. **Make the choice yourself**.
 
 ## Optional: dice
 
