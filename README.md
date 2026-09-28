@@ -3,7 +3,7 @@
 BIP39 words → account **xpub** so Bitcoin Core can **watch**.
 
 This is not a hardware wallet. This is not a signing wallet. The only job
-that has been tested for is:
+this tool has been tested for is:
 
 **24 words → BIP84 xpub + watch-only descriptor + receive address 0.**
 
@@ -14,10 +14,14 @@ air-gapped machine. The online node only ever sees an xpub.
 Do not put real money on an address that has only been printed by
 `bip39_account.py`. These files are not formally reviewed.
 
-This tool does not use libsecp. Sparrow (and Core) do. Libsecp is a much
+This tool does not use libsecp. Sparrow (and Core) do. I only even bring 
+Sparrow in as a grader because it is a well-regarded software that takes 
+BIP39 words in and uses libsecp for BIP32. Libsecp is a much
 larger library than we need here; we only walk BIP32 far enough to print
-an xpub and address 0. Grade this script against Sparrow or anything else
-you trust that uses libsecp.
+an xpub and address 0. Grade this script offline against Sparrow or another BIP39 wallet
+you trust offline that uses libsecp. Once you have confirmed that the 24 words you 
+generated produce the same XPUB and receive address that our script prints, then you
+can paste the XPUB into Core as your watch only node.
 
 If the same 24 words and path produce the **same xpub and address 0** in
 this script and in Sparrow, you are not looking at a malicious address.
@@ -26,8 +30,8 @@ wrote down wrong on your backup.
 
 ## Why words-in-a-bag is the default
 
-Dice can be slightly "fairer" bits. The expensive mistake is not a 0.2-bit
-bias. It is transcribing 253 bits of dice rolls into 23 words.
+Dice can be slightly "fairer" bits. The expensive mistake is not a slightly 
+unfair bag. It is transcribing 253 bits of dice rolls into 23 words.
 
 Default entropy here is: print the official wordlist, cut slips, draw
 **23 words**, put each slip **back** (repeats are allowed), then get **3
@@ -37,7 +41,7 @@ Dice protocol is still in `instructions.md` if you want it.
 
 ## Trust model
 
-After address 0 matches Sparrow, BlueWallet, or Core, the happy-path math
+After address 0 matches Sparrow, BlueWallet, or Core, the happy-path derivation itself
 is as checked as these scripts get.
 
 What still loses coins: sloppy draws, leftover bits in the wrong place,
@@ -63,7 +67,7 @@ No pip. No network. Python 3 stdlib only.
 | `bip39-dice-worksheet.pdf` | 11-bit dice sheet | Dice path only |
 | `instructions.md` | Tails + Core walkthrough | Read it |
 
-Already have a valid 24-word phrase? Skip both small scripts. Run 'bip39_account.py and type the 24 words in.
+Already have a valid 24-word phrase? Skip both small scripts. Run 'bip39_account.py' and type the 24 words in.
 
 ## Wordlist check
 
@@ -92,7 +96,7 @@ Indexes are **0-based** (`abandon` = 0). GitHub line numbers are 1-based.
 
 Uneven cuts and stuck slips are real. You still have far more than
 enough bits if the bag is mixed. Dice are cleaner on paper. A bag is
-harder to transcribe wrong. That is the trade.
+harder to transcribe wrong. That is the trade. Make the choice yourself.
 
 ## Optional: dice
 
@@ -126,7 +130,7 @@ Address 0 is `m/84h/0h/0h/0/0`. Core:
     wpkh([xfp/84h/0h/0h]xpub.../0/*)
     wpkh([xfp/84h/0h/0h]xpub.../1/*)
 
-Confirm address 0 against BlueWallet / Sparrow / Core **before** sending.
+Confirm address 0 against Sparrow / Core **before** sending.
 
 ## What this will not do
 
