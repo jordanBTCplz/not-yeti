@@ -2,8 +2,14 @@
 
 BIP39 words → account **xpub** so Bitcoin Core can **watch**.
 
-This is not a hardware wallet. This is not a signing wallet. The only job
-this tool has been tested for is:
+If you already insist on your own entropy and a BIP39 plate, the extra
+code here is two small stdlib Python scripts. Linux, Tails, and Core are the
+same trust you would take for an offline Core-only workflow. Sparrow
+is the independent check that those scripts walked BIP32 the same way
+libsecp does. If you do not want BIP39 at all, use Core and skip this
+repo.
+
+This is not a signing wallet. The only job this tool has been tested for is:
 
 **24 words → BIP84 xpub + watch-only descriptor + receive address 0.**
 
@@ -27,6 +33,10 @@ If the same 24 words and path produce the **same xpub and address 0** in
 this script and in Sparrow, you are not looking at a malicious address.
 The scripts are small and do one job. A match does **not** fix a word you
 wrote down wrong on your backup.
+
+The tested check is address 0 and the account xpub. Later receive
+and change addresses come from Core once that xpub is imported.
+You do not need this script to print addresses beyond 0.
 
 ## Why words-in-a-bag is the default
 
