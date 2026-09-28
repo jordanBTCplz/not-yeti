@@ -88,9 +88,15 @@ Skip section 4. Go to section 5. You do not need `rows.txt` or `lookup.py`.
 Mapping: **1=00  2=01  3=10  4=11**. **5 and 6 = reroll.** Cocked die = reroll.
 
 - Keep left-to-right order as they landed.
-- 23 rows of 11 bits, then 3 more bits written separately.
-- Those 3 bits do **not** go in `rows.txt`.
-- Sheet: `bip39-dice-worksheet.pdf`.
+- Print `bip39-dice-worksheet.pdf` and fill **23 rows** of 11 bits.
+- Then you will roll **3 more bits**. Write those on paper. They do **not** go in `rows.txt`.
+
+- What you will type looks like this. (fake bits — do not use):
+ ```
+    01001110101
+    11010001100
+    00101101011
+```
 
 1. `nano rows.txt` — 23 lines, exactly 11 characters of `0` and `1`. No leftover-bits line.
 2. `wc -l rows.txt` must say `23`.
@@ -105,7 +111,7 @@ Then section 5.
 
     python3 bip39_last_word.py
 
-- 23 words, spaces between them
+- type the 23 words with spaces between them
 - Extra bits: the three `0`/`1`s from paper (example `000` or `101`)
 - Write **word 24** and the full 24-word seed on paper
 
@@ -119,7 +125,7 @@ Type all **24** words. Script default is no passphrase.
 
 There is a `--passphrase` option. Do not use it unless that extra secret is written down with the plate. When you check in Sparrow or BlueWallet, leave the passphrase blank so it matches.
 
-Copy onto paper or a **public-only** text file on the data USB (not the words):
+Copy onto paper or a **public-only** text file on the data USB (not the 24 words):
 
 - path (`m/84h/0h/0h`)
 - master fingerprint (xfp)
@@ -129,9 +135,14 @@ Copy onto paper or a **public-only** text file on the data USB (not the words):
 
 Do **not** pass `--xprv` unless this box is air-gapped and you need a signing descriptor. Address 0 is `m/84h/0h/0h/0/0`. Confirm it on a second tool (Sparrow / BlueWallet / Core) before sending.
 
-If you used the dice path:
+**If** you used the dice path, delete `rows.txt` before you unplug the stick:
 
     rm rows.txt
+
+Those 23 lines are almost the whole seed. Do not leave them on the USB.
+Do not copy that file to the online machine. The words live on paper.
+The USB should only carry the xpub after this. This is one of the main reasons I
+decided to make pulling slips of paper the default. This is a risk. **Be aware of it**
 
 ---
 
